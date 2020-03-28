@@ -47,3 +47,16 @@ app.get('/tasks', (req, res) => {
             res.sendStatus(500);
         })
 })
+
+app.post('/tasks', (req, res) => {
+    console.log('In /tasks POST', req.body);
+    let sqlText = `INSERT INTO "weekendToDo" ("task") VALUES ($1);`;
+  pool.query(sqlText, [req.body.task])
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(error => {
+      console.log(`Error adding new task`, error);
+      res.sendStatus(500);
+    });
+})
