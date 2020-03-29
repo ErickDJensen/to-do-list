@@ -9,7 +9,7 @@ function handleReady() {
 function addClickHandler() {
     $('#submitTask').on('click', submitTask);
     $('#taskList').on('click', '.taskDelete', deleteTask);
-    $('#taskList').on('click', '.taskComplete', completeTask);
+    $('#taskList').on('click', '.taskComplete', 'ul li', completeTask);
 }
 
 
@@ -30,12 +30,24 @@ function renderTasks(tasks) {
     $('#taskList').empty();
     for (let item of tasks) {
         console.log('item', item.task);
-    $('#taskList').append(`
-    <tr>
-        <td>${item.task}</td>
-        <td><button class="taskComplete" data-id="${item.id}">Complete</button><button class="taskDelete" data-id="${item.id}">Delete</button></td>
-    </tr>`)
-}
+        if (item.status === "Completed") {
+            $('#taskList').append(`
+        <tr><td class="finished" width="250">
+        ${item.task}</td>
+        
+        <td><button class="taskDelete" data-id="${item.id}">Delete</button>
+        </td></tr>`)
+        } else {
+            $('#taskList').append(`
+        <tr><td width="250">
+        ${item.task}</td>
+        <td><button class="taskComplete" data-id="${item.id}">Complete</button>
+        <button class="taskDelete" data-id="${item.id}">Delete</button>
+        </td></tr>`)
+
+        }
+
+    }
 
 }
 
@@ -88,7 +100,7 @@ function completeTask() {
         console.log('Error in POST', error)
         alert('Unable to update task at this time. Please try again later.');
     });
-    
+
 }
 
 

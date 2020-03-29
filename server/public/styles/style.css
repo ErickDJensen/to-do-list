@@ -1,0 +1,10 @@
+body {
+    background-color: lightblue;
+}
+
+.finished {
+    background-color: rgba(83, 241, 10, 0.99);
+    text-decoration: line-through;
+    color: red;
+}
+
