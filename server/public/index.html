@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="scripts/client.js"></script>
     <title>To Do List</title>
 </head>
+
 <body>
     <h1>To Do List</h1>
     <div>
@@ -14,8 +16,16 @@
         <button type="submit" id="submitTask">Add To List</button>
         <br />
     </div>
-    <ul id="taskList">
-       <!-- --jQuerry will fill in here-- -->
-    </ul>
+    <table>
+      <thead>
+          <tr>
+              <th>Task</th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody id=taskList>
+      </tbody> 
+    </table>
 </body>
+
 </html>

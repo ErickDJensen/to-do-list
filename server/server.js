@@ -60,3 +60,17 @@ app.post('/tasks', (req, res) => {
       res.sendStatus(500);
     });
 })
+
+app.delete('/tasks/:id', (req, res) => {
+    console.log('In /tasks DELETE', req.body);
+    pool.query(`DELETE FROM "weekendToDo" WHERE "id"=$1;`, [req.params.id])
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(error => {
+      console.log(`Error deleting task`, error);
+      res.sendStatus(500);
+    });
+})
+
+
