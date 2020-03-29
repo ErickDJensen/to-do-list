@@ -32,18 +32,16 @@ function renderTasks(tasks) {
         console.log('item', item.task);
         if (item.status === "Completed") {
             $('#taskList').append(`
-        <tr><td class="finished" width="250">
-        ${item.task}</td>
-        
-        <td><button class="taskDelete" data-id="${item.id}">Delete</button>
-        </td></tr>`)
+        <tr>
+        <td class="finished" width="250">${item.task}</td>
+        <td><button class="taskDelete" data-id="${item.id}">Delete</button></td>
+        </tr>`)
         } else {
             $('#taskList').append(`
-        <tr><td width="250">
-        ${item.task}</td>
-        <td><button class="taskComplete" data-id="${item.id}">Complete</button>
-        <button class="taskDelete" data-id="${item.id}">Delete</button>
-        </td></tr>`)
+        <tr>
+        <td width="250">${item.task}</td>
+        <td><button class="taskDelete" data-id="${item.id}">Delete</button><button class="taskComplete" data-id="${item.id}">Complete</button></td>
+        </tr>`)
 
         }
 
