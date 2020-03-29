@@ -36,7 +36,7 @@ app.listen(PORT, () => {
 
 app.get('/tasks', (req, res) => {
     console.log('in /tasks GET');
-    let sqlText = `SELECT * FROM "weekendToDo";`;
+    let sqlText = `SELECT * FROM "weekendToDo" ORDER BY "id";`;
     pool.query(sqlText)
         .then(result => {
             console.log('Result: ', result);
@@ -63,12 +63,26 @@ app.post('/tasks', (req, res) => {
 
 app.delete('/tasks/:id', (req, res) => {
     console.log('In /tasks DELETE', req.body);
+    console.log('req.params', req.params);
     pool.query(`DELETE FROM "weekendToDo" WHERE "id"=$1;`, [req.params.id])
     .then(result => {
       res.sendStatus(201);
     })
     .catch(error => {
       console.log(`Error deleting task`, error);
+      res.sendStatus(500);
+    });
+})
+
+app.put('/tasks/:id', (req, res) => {
+    console.log('In /tasks DELETE', req.body);
+    console.log('req.params', req.params);
+    pool.query(`UPDATE "weekendToDo" SET "status"='Completed' WHERE "id"=$1;`, [req.params.id])
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(error => {
+      console.log(`Error updating task`, error);
       res.sendStatus(500);
     });
 })

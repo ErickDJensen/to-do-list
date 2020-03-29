@@ -33,7 +33,7 @@ function renderTasks(tasks) {
     $('#taskList').append(`
     <tr>
         <td>${item.task}</td>
-        <td><button class="taskComplete">Complete</button><button class="taskDelete" data-id="${item.id}">Delete</button></td>
+        <td><button class="taskComplete" data-id="${item.id}">Complete</button><button class="taskDelete" data-id="${item.id}">Delete</button></td>
     </tr>`)
 }
 
@@ -76,7 +76,19 @@ function deleteTask() {
 
 function completeTask() {
     console.log("In completeTask");
-
+    console.log('task id: ', $(this).data().id);
+    const taskId = $(this).data().id;
+    $.ajax({
+        type: 'PUT',
+        url: '/tasks/' + taskId
+    }).then(function (response) {
+        console.log('Response from server.', response);
+        refreshTasks();
+    }).catch(function (error) {
+        console.log('Error in POST', error)
+        alert('Unable to update task at this time. Please try again later.');
+    });
+    
 }
 
 
