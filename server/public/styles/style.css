@@ -1,10 +1,22 @@
 body {
-    background-color: lightblue;
+    background-image: url("https://media.istockphoto.com/vectors/paper-line-vector-background-detailed-lined-paper-texture-vector-id1160401973?b=1&k=6&m=1160401973&s=612x612&h=6GrcuLSygXFuTh24XcOg9M1tPg_g8uuuLeXg-vS1znM=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Bradley Hand", Times, serif;
+    font-size: 260%;
+}
+
+h1 {
+    text-decoration: underline;
 }
 
 .finished {
     background-color: rgba(83, 241, 10, 0.99);
     text-decoration: line-through;
     color: red;
+}
+
+#tasks {
+    font-size: 50%;
 }
 

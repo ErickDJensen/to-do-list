@@ -1,18 +1,20 @@
 $(document).ready(handleReady);
 
+//function to fun when the page loads
 function handleReady() {
     console.log('jQuery ready to go!')
     refreshTasks();
     addClickHandler();
-}
+}//end handleReady
 
+//function to add click handlers
 function addClickHandler() {
     $('#submitTask').on('click', submitTask);
     $('#taskList').on('click', '.taskDelete', deleteTask);
     $('#taskList').on('click', '.taskComplete', 'ul li', completeTask);
-}
+}//end addClickHandler
 
-
+//function to get info from database
 function refreshTasks() {
     $.ajax({
         type: 'GET',
@@ -23,8 +25,9 @@ function refreshTasks() {
     }).catch(function (error) {
         console.log('Catch the error', error);
     })
-}
+}//end refreshTasks
 
+//function to render on to the DOM
 function renderTasks(tasks) {
     console.log('In renderTasks', tasks);
     $('#taskList').empty();
@@ -47,8 +50,9 @@ function renderTasks(tasks) {
 
     }
 
-}
+}//end renderTasks
 
+//function to post to the server/database
 function submitTask() {
     console.log("In submitTask");
     let task = $('#inputTask').val()
@@ -66,8 +70,9 @@ function submitTask() {
         alert('Unable to add task at this time. Please try again later.');
     });
     $('#inputTask').val('');
-}
+}//end submitTask
 
+//function to delete tast from the server/database
 function deleteTask() {
     console.log("In deleteTask");
     console.log('task id: ', $(this).data().id);
@@ -82,8 +87,9 @@ function deleteTask() {
         console.log('Error in POST', error)
         alert('Unable to delete task at this time. Please try again later.');
     });
-}
+}//end deleteTask
 
+//functon to update the server/database
 function completeTask() {
     console.log("In completeTask");
     console.log('task id: ', $(this).data().id);
@@ -99,6 +105,6 @@ function completeTask() {
         alert('Unable to update task at this time. Please try again later.');
     });
 
-}
+}//end completeTask
 
 

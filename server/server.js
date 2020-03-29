@@ -22,18 +22,17 @@ pool.on('error', (error) => {
 })
 
 
-// use bodyParser.urlencoded throughout the app with this:
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// serve back static files
 app.use(express.static('server/public'));
 
 app.listen(PORT, () => {
   console.log('server running on: ', PORT);
-}); // end spin up server
+}); 
 
+//GET from client
 app.get('/tasks', (req, res) => {
   console.log('in /tasks GET');
   let sqlText = `SELECT * FROM "weekendToDo" ORDER BY "id";`;
@@ -46,8 +45,10 @@ app.get('/tasks', (req, res) => {
       console.log('Gon an error on Select query', error);
       res.sendStatus(500);
     })
-})
+})//end GET
 
+
+//POST from client
 app.post('/tasks', (req, res) => {
   console.log('In /tasks POST');
   let sqlText = `INSERT INTO "weekendToDo" ("task") VALUES ($1);`;
@@ -59,8 +60,9 @@ app.post('/tasks', (req, res) => {
       console.log(`Error adding new task`, error);
       res.sendStatus(500);
     });
-})
+})//end POST
 
+//DELETE from client
 app.delete('/tasks/:id', (req, res) => {
   console.log('In /tasks DELETE');
   console.log('req.params', req.params);
@@ -72,8 +74,9 @@ app.delete('/tasks/:id', (req, res) => {
       console.log(`Error deleting task`, error);
       res.sendStatus(500);
     });
-})
+})//end DELETE
 
+//PUT from client
 app.put('/tasks/:id', (req, res) => {
   console.log('In /tasks PUT');
   console.log('req.params', req.params);
@@ -85,6 +88,6 @@ app.put('/tasks/:id', (req, res) => {
       console.log(`Error updating task`, error);
       res.sendStatus(500);
     });
-})
+})//end PUT
 
 
