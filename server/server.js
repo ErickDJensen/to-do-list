@@ -7,7 +7,7 @@ const taskRouter = require('./routes/task.router')
 
 const app = express();
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended: true}));
