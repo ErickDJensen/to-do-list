@@ -8,7 +8,7 @@ In this project you can log a list of things you need to do. Once you have a lis
 To see the fully functional site, please visit: https://polar-sands-59885.herokuapp.com/
 
 ## Screen Shot
-![](public/images/todo.jpeg)
+![](server/public/images/todo.jpeg)
 
 ## Prerequisites
 Postgres
